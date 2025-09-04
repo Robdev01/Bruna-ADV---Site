@@ -1,31 +1,48 @@
+// Login.tsx
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:5003/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      toast({
-        title: "Erro",
-        description: "Por favor, preencha todos os campos.",
-        variant: "destructive",
-      });
+      toast({ title: "Erro", description: "Por favor, preencha todos os campos.", variant: "destructive" });
       return;
     }
-    
-    toast({
-      title: "Login realizado",
-      description: "Login efetuado com sucesso!",
-    });
+
+    try {
+      const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha: password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        toast({ title: "Falha no login", description: data?.error ?? "Tente novamente.", variant: "destructive" });
+        return;
+      }
+
+      // esperamos receber { usuario: { id, nome, email } }
+      localStorage.setItem("sb:user", JSON.stringify(data.usuario));
+
+      toast({ title: "Login realizado", description: "Login efetuado com sucesso!" });
+      navigate("/cadastro-blog");
+    } catch (err) {
+      toast({ title: "Erro de rede", description: "Não foi possível conectar ao servidor.", variant: "destructive" });
+    }
   };
 
   return (

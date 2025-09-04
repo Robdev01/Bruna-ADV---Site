@@ -32,7 +32,7 @@ CREATE TABLE `posts_blog` (
   PRIMARY KEY (`id`),
   KEY `autor_id` (`autor_id`),
   CONSTRAINT `posts_blog_ibfk_1` FOREIGN KEY (`autor_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `posts_blog` (
 
 LOCK TABLES `posts_blog` WRITE;
 /*!40000 ALTER TABLE `posts_blog` DISABLE KEYS */;
+INSERT INTO `posts_blog` VALUES (1,'1','111','2025-09-03 20:17:11',1,NULL),(2,'1','111','2025-09-03 20:18:50',1,NULL),(3,'1','111212121212121212121','2025-09-04 16:35:48',1,NULL),(4,'121212','21212121','2025-09-04 16:42:52',1,'/static/uploads/blog/9e60fe839bea440bb989946a850d44bd.png');
 /*!40000 ALTER TABLE `posts_blog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,9 +57,10 @@ CREATE TABLE `usuarios` (
   `email` varchar(150) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `dt_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
+  `nome` varchar(259) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +69,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'joao@joao.com','admin123','2025-09-03 19:29:20','João Silva');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -79,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-28 17:57:34
+-- Dump completed on 2025-09-04 17:50:30
