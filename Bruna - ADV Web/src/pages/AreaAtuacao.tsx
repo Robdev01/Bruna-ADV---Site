@@ -1,5 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Scale, Heart, Shield, Users, Home, FileText, Gavel, Handshake, DollarSign, Building } from "lucide-react";
+
+import { Scale, Heart, Shield, Users, FileText, Gavel, Handshake, DollarSign, Building } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AreaAtuacao = () => {
@@ -57,74 +58,25 @@ const AreaAtuacao = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-light to-secondary">
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Serviços
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-purple-primary mb-8">
-            Atuação especializada
-          </h2>
+    <div className="section-space">
+      <div className="container">
+        <div className="page-heading">
+          <span className="eyebrow">Áreas de atuação</span>
+          <h1>Orientação para a sua família.<br /><em>Proteção para o seu futuro.</em></h1>
+          <p>Atuação em Direito de Família e Sucessões, com análise individualizada e orientação clara para cada momento da sua vida.</p>
         </div>
-
-        {/* Services Icon */}
-        <div className="flex justify-center mb-16">
-          <div className="w-24 h-24 bg-gradient-to-br from-purple-primary to-purple-secondary rounded-full flex items-center justify-center">
-            <Scale className="h-12 w-12 text-white" />
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {services.map(({ icon: Icon, title, description }, index) => (
+            <Link to="/contato" key={title} className="practice-item group">
+              <Icon size={26} strokeWidth={1.3} className="text-primary shrink-0" />
+              <div><span className="eyebrow">{String(index + 1).padStart(2, "0")}</span><h2>{title}</h2><p>{description}.</p></div>
+              <ArrowUpRight size={18} className="text-primary shrink-0 ml-auto" />
+            </Link>
+          ))}
         </div>
-
-        {/* Services Grid */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 hover:shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-purple-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                        <IconComponent className="h-6 w-6 text-white" />
-                      </div>
-                      <div className="space-y-2">
-                        <h3 className="font-semibold text-lg text-foreground leading-tight">
-                          {service.title}
-                        </h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Card className="bg-white/90 backdrop-blur-sm max-w-2xl mx-auto">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Precisa de Orientação Jurídica?
-              </h3>
-              <p className="text-muted-foreground mb-6">
-                Entre em contato conosco para uma consulta personalizada. Estamos prontos para ajudar você a encontrar a melhor solução para seu caso.
-              </p>
-              <Link
-                to="/contato"
-                className="inline-flex items-center justify-center rounded-md bg-purple-primary px-8 py-3 text-white font-medium hover:bg-purple-secondary transition-colors"
-              >
-                Agendar Consulta
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
+        <div className="practice-cta"><div><span className="eyebrow">Atendimento individualizado</span><h2>Vamos entender o seu caso?</h2><p>Entre em contato para receber informações sobre o atendimento e agendar sua consulta.</p></div><Link to="/contato" className="action-link">Agendar consulta <ArrowUpRight size={17} /></Link></div>
       </div>
     </div>
   );
 };
-
 export default AreaAtuacao;

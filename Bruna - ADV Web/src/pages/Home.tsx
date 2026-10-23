@@ -1,186 +1,66 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Scale, Heart, Shield, Users, CheckCircle, Star, Award, Clock } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, HeartHandshake, Scale, ShieldCheck, Users, Video, LockKeyhole } from "lucide-react";
 import { Link } from "react-router-dom";
-import imagem_BrunaHome from "@/assets/img_bruna/Bruna de lado.jpg";
+import portrait from "@/assets/img_bruna/bruna-retrato.webp";
+import aboutPortrait from "@/assets/img_bruna/bruna-escritorio.webp";
 
-const Home = () => {
-  
+const services = [
+  { icon: Scale, title: "Divórcio e separação", description: "Orientação para conduzir o fim de um ciclo com clareza, cuidado e proteção dos seus direitos." },
+  { icon: Users, title: "Guarda e convivência", description: "Atuação voltada ao bem-estar dos filhos e à construção de relações familiares equilibradas." },
+  { icon: ShieldCheck, title: "Pensão alimentícia", description: "Assessoria em fixação, revisão e execução de alimentos, considerando cada realidade familiar." },
+  { icon: HeartHandshake, title: "Família e sucessões", description: "União estável, inventário e planejamento sucessório para cuidar de quem e do que importa." },
+];
 
-  const services = [
-    {
-      icon: Scale,
-      title: "Divórcio & Separação",
-      description: "Orientação completa em processos de divórcio consensual e litigioso com foco na proteção dos seus direitos."
-    },
-    {
-      icon: Heart,
-      title: "Guarda de Filhos",
-      description: "Defesa dos melhores interesses das crianças com experiência em guarda compartilhada e unilateral."
-    },
-    {
-      icon: Shield,
-      title: "Pensão Alimentícia",
-      description: "Ação, revisão e execução de pensão alimentícia com cálculos precisos e fundamentação jurídica sólida."
-    },
-    {
-      icon: Users,
-      title: "União Estável",
-      description: "Reconhecimento, dissolução e regulamentação de direitos patrimoniais em união estável."
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative pb-16 bg-gradient-to-br from-purple-primary via-purple-secondary to-purple-accent overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/5 to-transparent" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-8 animate-fade-in">
-              <div className="space-y-4">
-                              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Protegendo Famílias com 
-                  <span className="block bg-gradient-to-r from-white to-purple-light bg-clip-text text-transparent">
-                    Excelência Jurídica
-                  </span>
-                </h1>
-              </div>
-              
-              <p className="text-lg md:text-xl leading-relaxed opacity-95 max-w-2xl">
-                Com mais de 3 anos de experiência, ofereço soluções jurídicas personalizadas 
-                para questões familiares complexas. Meu compromisso é proteger 
-                seus direitos com estratégias eficazes e atendimento humanizado.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/contato">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-purple-primary hover:bg-white/90 transition-all duration-300 text-lg px-8 py-4 shadow-xl hover:shadow-2xl"
-                  >
-                    Consulta Gratuita
-                  </Button>
-                </Link>
-                <Link to="/area-atuacao">
-                  <Button 
-                    size="lg" 
-                    className="bg-white text-purple-primary hover:bg-white/90 transition-all duration-300 text-lg px-8 py-4 shadow-xl hover:shadow-2xl"
-                  >
-                    Nossos Serviços
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="flex justify-center lg:justify-end animate-scale-in">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-white/20 to-transparent rounded-2xl blur-2xl"></div>
-                <img
-                  src={imagem_BrunaHome}
-                  alt="Bruna Calheira - Advogada especialista em Direito de Família"
-                  className="relative w-full max-w-md rounded-2xl shadow-2xl border-4 border-white/20"
-                />
-              </div>
-            </div>
+const Home = () => (
+  <div>
+    <section className="home-hero">
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <span className="eyebrow"><span /> Direito de Família e Sucessões</span>
+          <h1>Segurança para decidir.<br /><em>Cuidado para recomeçar.</em></h1>
+          <p>Por trás de cada questão jurídica, existe uma história. Encontre orientação próxima e responsável para proteger seus direitos e seguir em frente com confiança.</p>
+          <div className="hero-actions">
+            <Link to="/contato" className="action-link">Agendar uma consulta <ArrowUpRight size={18} /></Link>
+            <Link to="/area-atuacao" className="text-link">Conheça nossa atuação <ArrowRight size={17} /></Link>
           </div>
+          <div className="hero-note"><Video size={17} strokeWidth={1.5} /><span>Atendimento on-line em todo o Brasil</span></div>
         </div>
-      </section>     
-
-      {/* Services Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-slide-up">
-           
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
-              Expertise em Direito de Família
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Soluções jurídicas completas com foco em resultados eficazes e atendimento personalizado para cada situação familiar.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Card key={index} className="group hover:shadow-2xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm">
-                  <CardContent className="p-8">
-                    <div className="flex items-start space-x-6">
-                      <div className="w-16 h-16 bg-gradient-to-br from-purple-primary to-purple-secondary rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <IconComponent className="h-8 w-8 text-white" />
-                      </div>
-                      <div className="space-y-4 flex-1">
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="text-muted-foreground leading-relaxed">
-                          {service.description}
-                        </p>
-                        <Link to="/area-atuacao" className="inline-flex items-center text-primary hover:text-purple-secondary font-medium text-sm transition-colors duration-300">
-                          Saiba mais →
-                        </Link>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/area-atuacao">
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300">
-                Ver Todos os Serviços
-              </Button>
-            </Link>
-          </div>
+        <div className="hero-portrait">
+          <img src={portrait} alt="Bruna Calheira, advogada de Família e Sucessões" fetchPriority="high" width="800" height="1200" />
+          <div className="portrait-caption"><span>Bruna Calheira</span><small>Advocacia e Consultoria Jurídica</small></div>
+          <span className="portrait-side" aria-hidden="true">ESCUTA. CLAREZA. CONFIANÇA.</span>
         </div>
-      </section>
+      </div>
+      <div className="container hero-bottom"><span>Um olhar atento para a sua história.</span><a href="#atuacao" aria-label="Conhecer as áreas de atuação"><ArrowDown size={18} /></a><span>Direito com sensibilidade e propósito</span></div>
+    </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-primary to-purple-secondary relative overflow-hidden">
-        <div className="absolute inset-0 bg-black/10" />
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-48 h-48 bg-white rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="max-w-4xl mx-auto text-white space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-              Sua Família Merece a 
-              <span className="block">Melhor Defesa Jurídica</span>
-            </h2>
-            <p className="text-xl opacity-95 leading-relaxed max-w-2xl mx-auto">
-              Agende sua consulta gratuita e descubra como podemos proteger seus direitos com estratégias jurídicas eficazes e atendimento humanizado.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contato">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-purple-primary hover:bg-white/90 transition-all duration-300 text-lg px-10 py-4 shadow-2xl hover:shadow-3xl"
-                >
-                  📞 Agendar Consulta Gratuita
-                </Button>
-              </Link>
-              <Link to="/diferenciais">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-purple-primary hover:bg-white/90 transition-all duration-300 text-lg px-10 py-4 shadow-2xl hover:shadow-3xl"
-                >
-                  Conheça Nossos Diferenciais
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+    <section id="atuacao" className="section-space services-section">
+      <div className="container">
+        <div className="section-heading"><div><span className="eyebrow">Como podemos ajudar</span><h2>Amparo jurídico nos momentos<br className="hidden md:block" /> que pedem atenção.</h2></div><p>Cada família tem suas particularidades. Nossa atuação começa pela escuta e se desenvolve com uma estratégia pensada para você.</p></div>
+        <div className="services-grid">{services.map(({ icon: Icon, title, description }, index) => (
+          <Link to="/area-atuacao" className="service-item" key={title}>
+            <div className="service-top"><Icon size={29} strokeWidth={1.3} /><span>0{index + 1}</span></div>
+            <h3>{title}</h3><p>{description}</p><span className="service-more">Conhecer atuação <ArrowUpRight size={17} /></span>
+          </Link>
+        ))}</div>
+        <Link to="/area-atuacao" className="text-link all-services">Ver todas as áreas de atuação <ArrowRight size={17} /></Link>
+      </div>
+    </section>
 
+    <section className="section-space about-section"><div className="container about-grid">
+      <div className="about-image"><img src={aboutPortrait} alt="Bruna Calheira em seu retrato profissional" loading="lazy" width="700" height="610" /></div>
+      <div className="about-copy"><span className="eyebrow">À frente do escritório</span><h2>Compromisso com o direito.<br /><em>Respeito à sua história.</em></h2><p>Sou Bruna Calheira, advogada com atuação em Direito de Família e Sucessões. Acredito em uma advocacia que une conhecimento técnico, diálogo e sensibilidade.</p><p>Meu compromisso é ajudar você a compreender suas possibilidades e tomar decisões informadas, com acompanhamento próximo em cada etapa.</p><Link to="/diferenciais" className="text-link">Conheça o escritório <ArrowRight size={17} /></Link></div>
+    </div></section>
+
+    <section className="section-space approach-section"><div className="container">
+      <div className="section-heading"><div><span className="eyebrow">Nossa forma de trabalhar</span><h2>Clareza em cada passo.</h2></div><p>Um atendimento que acolhe suas dúvidas e traz direção para os próximos passos.</p></div>
+      <div className="steps-grid">{[
+        ["01", "Escuta e acolhimento", "Um primeiro contato para entender sua história, suas necessidades e suas principais dúvidas."],
+        ["02", "Análise e orientação", "Avaliação cuidadosa do seu caso, com explicações claras sobre os caminhos jurídicos possíveis."],
+        ["03", "Acompanhamento próximo", "Uma estratégia individualizada e comunicação transparente durante o andamento do seu caso."],
+      ].map(([number, title, description]) => <div className="step" key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></div>)}</div>
+    </div></section>
+
+    <section className="contact-banner"><div className="container contact-banner-inner"><div><span className="eyebrow">Vamos conversar?</span><h2>O primeiro passo é ter<br /><em>com quem contar.</em></h2></div><div><p>Conte-nos o que você precisa. Estamos aqui para ouvir e orientar você com atenção e responsabilidade.</p><Link to="/contato" className="action-link action-light">Entre em contato <ArrowUpRight size={18} /></Link><span className="confidential-note"><LockKeyhole size={14} /> Atendimento com discrição e sigilo</span></div></div></section>
+  </div>
+);
 export default Home;

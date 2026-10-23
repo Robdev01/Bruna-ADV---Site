@@ -105,7 +105,7 @@ const Blog = () => {
     // tenta parse simples; se já vier formatado, apenas retorna
     const d = new Date(raw);
     if (isNaN(d.getTime())) return raw;
-    return d.toLocaleDateString();
+    return d.toLocaleDateString("pt-BR");
   };
 
   const imageUrl = (post: BlogPost) => {
@@ -134,36 +134,36 @@ const Blog = () => {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-primary to-purple-secondary">
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Blog</h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white/90 mb-4">
-            Artigos recentes
-          </h2>
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto py-16 md:py-20">
+        <div className="page-heading">
+          <span className="eyebrow">Artigos e informações</span>
+          <h1>Conhecimento que acolhe.<br /><em>Informação que orienta.</em></h1>
+          <p className="mb-8">Conteúdos sobre Direito de Família e Sucessões para ajudar você a compreender seus direitos.</p>
 
           {/* busca */}
-          <form onSubmit={handleSearch} className="max-w-lg mx-auto flex gap-2">
+          <form onSubmit={handleSearch} className="max-w-lg flex gap-2">
             <Input
+              aria-label="Buscar artigos por título ou texto"
               placeholder="Buscar por título ou texto…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="bg-white"
             />
-            <Button type="submit" className="bg-white text-purple-primary hover:bg-white/90">
+            <Button type="submit" className="bg-primary text-white hover:bg-purple-secondary">
               Buscar
             </Button>
           </form>
 
           {errMsg && (
-            <p className="mt-4 text-sm text-red-100 bg-red-600/40 inline-block px-3 py-1 rounded">
+            <p className="mt-4 text-sm text-destructive bg-destructive/10 inline-block px-3 py-1 rounded">
               {errMsg}
             </p>
           )}
         </div>
 
         {/* Grid de posts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {loading && items.length === 0 ? (
             // skeleton simples
             Array.from({ length: 5 }).map((_, i) => (
@@ -176,13 +176,13 @@ const Blog = () => {
               </Card>
             ))
           ) : items.length === 0 ? (
-            <div className="col-span-full text-center text-white/90">
+            <div className="col-span-full text-center text-muted-foreground py-12">
               Nenhum post encontrado.
             </div>
           ) : (
             items.map((post) => (
               <Link key={post.id} to={`/blog/${post.id}`}>
-                <Card className="bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-300 hover:shadow-lg cursor-pointer group">
+                <Card className="h-full bg-white border-border shadow-none transition-all duration-300 hover:shadow-md cursor-pointer group">
                   <CardContent className="p-6 h-full flex flex-col">
                     <div className="flex-1 space-y-4">
                       <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-purple-light to-purple-primary flex items-center justify-center group-hover:from-purple-primary group-hover:to-purple-secondary transition-all duration-300">
@@ -230,7 +230,7 @@ const Blog = () => {
             >
               Anterior
             </Button>
-            <span className="text-white text-sm">
+            <span className="text-muted-foreground text-sm">
               Página {page} de {totalPages}
             </span>
             <Button
@@ -249,7 +249,7 @@ const Blog = () => {
             <CardContent className="p-8">
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Quer receber mais informações? Se inscreva em nossa Newsletter
+                  Informação para acompanhar de perto
                 </h3>
               </div>
 
@@ -300,7 +300,7 @@ const Blog = () => {
                     className="bg-purple-primary hover:bg-purple-secondary text-white px-8 py-3"
                     disabled={!acceptEmails}
                   >
-                    INSCREVER
+                    Receber novos artigos
                   </Button>
                 </div>
               </form>

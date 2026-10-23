@@ -22,8 +22,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <div className="min-h-screen flex flex-col">
+          <a href="#conteudo" className="skip-link">Pular para o conteúdo</a>
           <Header />
-          <main className="flex-1 pt-20">
+          <main id="conteudo" className="site-main flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/diferenciais" element={<Diferenciais />} />

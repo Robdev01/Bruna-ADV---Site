@@ -39,7 +39,7 @@ const BlogPost = () => {
   const formatDate = (raw: string) => {
     const d = new Date(raw);
     if (isNaN(d.getTime())) return raw;
-    return d.toLocaleDateString();
+    return d.toLocaleDateString("pt-BR");
   };
 
   const imageUrl = useMemo(() => {
@@ -69,7 +69,7 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-primary to-purple-secondary flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="bg-white/90 w-full max-w-3xl">
           <CardContent className="p-8 animate-pulse">
             <div className="h-8 bg-muted rounded w-2/3 mb-6" />
@@ -89,7 +89,7 @@ const BlogPost = () => {
 
   if (errMsg || !post) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-primary to-purple-secondary flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <Card className="bg-white/95 backdrop-blur-sm p-8 text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">
             {errMsg ?? "Post não encontrado"}
@@ -108,12 +108,12 @@ const BlogPost = () => {
   const paragraphs = post.texto.split(/\n{2,}/).map((p, i) => p.trim() && <p key={i} className="mb-4">{p}</p>);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-primary to-purple-secondary">
-      <div className="container mx-auto px-4 py-20">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto py-16 md:py-20">
         {/* Back */}
         <div className="mb-8">
           <Link to="/blog">
-            <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+            <Button variant="outline" className="bg-white border-border text-primary hover:bg-secondary">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Voltar ao Blog
             </Button>

@@ -13,7 +13,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { CheckCircle2, AlertTriangle } from "lucide-react";
+import { CheckCircle2, AlertTriangle, Mail, Phone, Video, LockKeyhole, ArrowUpRight } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:5003/api";
 
@@ -67,11 +67,11 @@ const Contato = () => {
         "Recebemos sua solicitação. Em breve entraremos em contato."
       );
       setFormData({ name: "", phone: "", email: "", message: "" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       openModal(
         "error",
         "Erro ao enviar",
-        err?.message ?? "Ocorreu um erro inesperado. Tente novamente."
+        err instanceof Error ? err.message : "Ocorreu um erro inesperado. Tente novamente."
       );
     } finally {
       setSubmitting(false);
@@ -79,28 +79,14 @@ const Contato = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-light to-secondary">
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-8">Contato</h1>
-        </div>
-
-        <div className="max-w-3xl mx-auto">
-          <Card className="bg-white/95 backdrop-blur-sm shadow-xl">
+    <div className="section-space">
+      <div className="container">
+        <div className="page-heading"><span className="eyebrow">Contato</span><h1>Vamos ouvir<br /><em>a sua história.</em></h1><p>O primeiro contato é o início de uma orientação cuidadosa. Fale com o escritório para saber mais sobre o atendimento.</p></div>
+        <div className="contact-layout">
+          <div className="contact-intro"><h2>Como podemos ajudar?</h2><p>Conte brevemente o que você precisa e suas principais dúvidas. Retornaremos com informações sobre a consulta e os horários disponíveis.</p><div className="contact-details"><a href="https://wa.me/5511982419086" target="_blank" rel="noopener noreferrer"><Phone size={17} /> (11) 98241-9086 <ArrowUpRight size={15} /></a><a href="mailto:brunacalheiraadv@gmail.com"><Mail size={17} /> brunacalheiraadv@gmail.com</a><span className="flex items-center gap-2"><Video size={17} /> Consultas on-line em todo o Brasil</span></div><p>Segunda a sexta, das 9h às 18h.</p><p className="flex items-center gap-2"><LockKeyhole size={16} /> Suas informações são tratadas com sigilo.</p></div>
+          <Card className="contact-form-card">
             <CardContent className="p-8">
-              <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Como Agendar</h2>
-
-                <div className="space-y-4 text-foreground">
-                  <p className="text-lg">Atendemos todo o Brasil através de consultorias on-line.</p>
-
-                  <p className="text-base leading-relaxed">
-                    Preencha abaixo um breve relato do seu caso, suas principais dúvidas e o seu grau de urgência
-                    para resolução. Retornaremos com a próxima data e horário de agendamento disponíveis.
-                  </p>
-                </div>
-              </div>
-
+              <h2 className="text-3xl mb-7">Envie sua mensagem</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-foreground font-medium">
@@ -110,9 +96,11 @@ const Contato = () => {
                     id="name"
                     name="name"
                     type="text"
+                    autoComplete="name"
+                    placeholder="Como você se chama?"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="bg-white border-2 border-purple-primary/30 focus:border-purple-primary rounded-none border-b-4 border-t-0 border-l-0 border-r-0 border-b-purple-primary"
+                    className="focus-visible:ring-primary/30"
                     required
                   />
                 </div>
@@ -125,9 +113,11 @@ const Contato = () => {
                     id="phone"
                     name="phone"
                     type="tel"
+                    autoComplete="tel"
+                    placeholder="(DDD) 99999-9999"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="bg-white border-2 border-purple-primary/30 focus:border-purple-primary rounded-none border-b-4 border-t-0 border-l-0 border-r-0 border-b-purple-primary"
+                    className="focus-visible:ring-primary/30"
                     required
                   />
                 </div>
@@ -140,9 +130,11 @@ const Contato = () => {
                     id="email"
                     name="email"
                     type="email"
+                    autoComplete="email"
+                    placeholder="voce@exemplo.com"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="bg-white border-2 border-purple-primary/30 focus:border-purple-primary rounded-none border-b-4 border-t-0 border-l-0 border-r-0 border-b-purple-primary"
+                    className="focus-visible:ring-primary/30"
                     required
                   />
                 </div>
@@ -158,18 +150,18 @@ const Contato = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Descreva seu caso, suas principais dúvidas e o grau de urgência..."
-                    className="bg-white border-2 border-purple-primary/30 focus:border-purple-primary resize-none"
+                    className="focus-visible:ring-primary/30 resize-y"
                     required
                   />
                 </div>
 
-                <div className="text-center pt-6">
+                <div className="pt-2">
                   <Button
                     type="submit"
-                    className="bg-purple-primary hover:bg-purple-secondary text-white px-12 py-3 text-lg font-semibold rounded-full"
+                    className="w-full h-12 rounded-sm bg-primary hover:bg-purple-secondary text-white text-sm font-medium"
                     disabled={submitting}
                   >
-                    {submitting ? "Enviando..." : "ENVIAR"}
+                    {submitting ? "Enviando..." : "Enviar mensagem"}
                   </Button>
                 </div>
               </form>
@@ -195,7 +187,7 @@ const Contato = () => {
           <DialogFooter>
             <Button
               onClick={() => setModalOpen(false)}
-              className={modalKind === "success" ? "bg-green-600 hover:bg-purple-700" : "bg-purple-600 hover:bg-purple-700"}
+              className="bg-primary hover:bg-purple-secondary"
             >
               OK
             </Button>
